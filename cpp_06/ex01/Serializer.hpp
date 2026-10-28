@@ -4,11 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdint.h>
+#include "Data.hpp"
 
-struct Data{
-    std::string name;
-    int age;
-};
 
 class Serializer
 {
@@ -21,6 +18,5 @@ private:
 public:
     static uintptr_t serialize(Data* ptr);
     static Data* deserialize(uintptr_t raw);
-
 };
 #endif
