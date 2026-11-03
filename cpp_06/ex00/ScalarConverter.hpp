@@ -3,11 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <cctype> // isdigit, is print
 #include <climits>
-#include <cstdlib>
-#include <limits>
-#include <cmath>
+#include <cstdlib> //strol, strtod
+#include <cmath> //floor
 
 class ScalarConverter
 {

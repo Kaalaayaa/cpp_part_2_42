@@ -1,5 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <cctype>
 
 /*  ⠀⠀⠄⠀⢀⣴⡇⠀⠀⠀⠈⠀⠀⣦⡀⠀⡀⠀                ⢀⠀⢀⣴⠀⠀⠁⠀⠀⠀⢸⣦⡀⠀⠠⠀⠀
  *  ⢠⡀⠀⠀⣼⣿⣇⠀⠈⣴⠀⠀⣠⣿⡗⠀⣰⡇               ⢸⣆⠀⢺⣿⣄⠀⠀⣦⠁⠀⣸⣿⣧⠀⠀⢀⡄
@@ -29,7 +28,12 @@ ScalarConverter::~ScalarConverter(){}
 
 bool ScalarConverter::isChar(std::string const& literal)
 {
-    return literal.length() == 1 && !std::isdigit(literal[0]);
+    if(literal.length() == 1 && !std::isdigit(literal[0]))
+        return 1;
+    else if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'')
+        return 1;
+    else
+        return 0;
 }
 
 bool ScalarConverter::isInt(std::string const& literal)
@@ -129,7 +133,12 @@ std::string ScalarConverter::getLiteralType(std::string const &literal)
 
 void ScalarConverter::convertFromChar(std::string const &literal)
 {
-    char c = literal[0];
+    char c = 0;
+
+    if (literal.length() == 1)
+        c = literal[0];
+    else
+        c = literal[1];
 
     if (std::isprint(static_cast<unsigned char>(c))) //is print check that its printable char
         std::cout << "char: '" << c << "'" << std::endl;

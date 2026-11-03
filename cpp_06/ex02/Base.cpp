@@ -8,12 +8,21 @@ Base* generator(void)
 {
     int randomValue = std::rand() % 3;
     if(randomValue == 0)
+    {
+        std::cout << "A was instanciated." <<std::endl;
         return new A();
+    }
     else if(randomValue == 1)
+    {
+        std::cout << "B was instanciated." <<std::endl;
         return new B();
+    }
     else
+    {
+        std::cout << "C was instanciated." <<std::endl;
         return new C();
-}// randomy instantiates A, B or C and returns them as Base pointer
+    }
+}
 
 void identify(Base* p)
 {
@@ -26,10 +35,39 @@ void identify(Base* p)
     else
         std::cout << "actual type is : Unknown" << std::endl;
 }
-// prints type of the object pointed to by p : A, B or C
 
 void identify(Base& p)
 {
+    try
+    {
+        A& a = dynamic_cast<A&>(p);
+        (void)a;
+        std::cout << "actual type is : A" << std::endl;
+    }
+    catch(const std::bad_cast&)
+    {
+        try
+        {
+            B& b = dynamic_cast<B&>(p);
+            (void)b;
+            std::cout << "actual type is : B" << std::endl;
+        }
+        catch(const std::bad_cast&)
+        {
+            try
+            {
+                C& c = dynamic_cast<C&>(p);
+                (void)c;
+                std::cout << "actual type is : C" << std::endl;
+            }
+            catch(const std::bad_cast&)
+            {
+                std::cout << "actual type is : Unknown" << std::endl;
+            }
+        }
+        
+    }
+    
     if(dynamic_cast<A*>(&p))
         std::cout << "actual type is : A" << std::endl;
     else if(dynamic_cast<B*>(&p))
@@ -38,7 +76,7 @@ void identify(Base& p)
         std::cout << "actual type is : C" << std::endl;
     else
         std::cout << "actual type is : Unknown" << std::endl;
-}// prints the type of the object referenced by p: A B or C
+}
 
 
  // NOTES
