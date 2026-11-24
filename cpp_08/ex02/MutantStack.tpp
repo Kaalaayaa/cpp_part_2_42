@@ -2,14 +2,10 @@
 # define MUTANTSTACK_TPP
 
 template <typename T>
-MutantStack<T>::MutantStack()
-{
-}
+MutantStack<T>::MutantStack(){}
 
 template <typename T>
-MutantStack<T>::MutantStack(MutantStack const &other) : std::stack<T>(other)
-{
-}
+MutantStack<T>::MutantStack(MutantStack const &other) : std::stack<T>(other){}
 
 template <typename T>
 MutantStack<T> &MutantStack<T>::operator=(MutantStack const &other)
@@ -19,9 +15,7 @@ MutantStack<T> &MutantStack<T>::operator=(MutantStack const &other)
 }
 
 template <typename T>
-MutantStack<T>::~MutantStack()
-{
-}
+MutantStack<T>::~MutantStack(){}
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::begin()

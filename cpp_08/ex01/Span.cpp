@@ -1,5 +1,7 @@
 #include "Span.hpp"
 
+Span::Span() : N(0) {}
+
 Span::Span(unsigned int N) : N(N){}
 
 Span::Span(Span const &other) : N(other.N), numbers(other.numbers){}
@@ -50,4 +52,14 @@ int Span::shortestSpan()
     }
 
     return smallestGap;
+}
+
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    for (std::vector<int>::iterator it = begin; it != end; ++it)
+    {
+        if (numbers.size() >= N)
+            throw SpanFullException();
+        numbers.push_back(*it);
+    }
 }
